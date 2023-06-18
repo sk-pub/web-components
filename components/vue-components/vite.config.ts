@@ -12,7 +12,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./lib', import.meta.url))
+      '@': fileURLToPath(new URL('./lib', import.meta.url)),
+      'vue': 'vue/dist/vue.runtime.esm-browser.prod.js'
     }
   },
   build: {
