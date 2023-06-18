@@ -14,7 +14,8 @@ class Section extends HTMLElement {
     render() {
         const template = document.createElement('template');
         template.innerHTML = `
-  <div><h2>${this.title}</h2></div>
+<style>h2 { color: rgb(var(--x-theme-primary)); }</style>
+<div><h2>${this.title}</h2></div>
         `;
         this._shadowRoot.appendChild(template.content.cloneNode(true));
     }
@@ -47,3 +48,4 @@ class Section extends HTMLElement {
   }
   
   globalThis.customElements.define('x-section', Section);
+  
