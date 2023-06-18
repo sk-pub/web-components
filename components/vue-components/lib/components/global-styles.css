@@ -1,0 +1,7 @@
+.primary {
+    color: rgb(var(--x-theme-primary));
+}
+
+.secondary {
+    color: rgb(var(--x-theme-secondary));
+}

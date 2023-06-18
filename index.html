@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Use the code below if the Vue part is externalized in vue-components/vite.config.ts -->
+    <!-- <script type="importmap">
+      { "imports": {
+          "vue":        "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.esm-browser.prod.js",
+          "vue-router": "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js"
+      } }
+    </script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Components playground</title>
   </head>
   <body>
+    <x-vue-button msg="Vue button!"></x-vue-button>
     <x-header></x-header>
     <section id="content">
     </section>

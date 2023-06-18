@@ -1,1 +1,1 @@
-import {} from './component-loader';
+import {} from './component-loader.js';

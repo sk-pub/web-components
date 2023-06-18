@@ -11,7 +11,7 @@ class SubSection extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
 <x-section title="Sub-section"></x-section>
-<button>Add Text</button>
+<button>Add Vue Message</button>
         `;
         this._shadowRoot.appendChild(template.content.cloneNode(true));
 
@@ -23,7 +23,8 @@ class SubSection extends HTMLElement {
     }
 
     addText() {
-        const text = document.createElement('x-text');
+        const text = document.createElement('x-vue-message');
+        text.setAttribute('msg', 'Vue message!');
         this._shadowRoot.appendChild(text);
     }
 }

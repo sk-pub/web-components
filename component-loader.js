@@ -3,22 +3,22 @@ const observer = new MutationObserver((mutationList) => {
     for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
             for (const node of mutation.addedNodes) {
-                loadTagIfNeeded(node);
+                processNode(node);
             }
         }
     }
 });
 
-ProcessCustomTagsForNode(document.getRootNode());
+processChildNodes(document.getRootNode());
 
-function ProcessCustomTagsForNode(targetNode) {
-    targetNode.querySelectorAll('*').forEach((node) => loadTagIfNeeded(node));
+function processChildNodes(targetNode) {
+    targetNode.querySelectorAll('*').forEach((node) => processNode(node));
 
     // Start observing the target node for configured mutations
     observer.observe(targetNode, { childList: true, subtree: true });
 }
 
-async function loadTagIfNeeded(node) {
+async function processNode(node) {
     if (node.tagName == null || !node.tagName.startsWith('X-')) {
         return;
     }
@@ -29,14 +29,26 @@ async function loadTagIfNeeded(node) {
     const tagExists = customElement != null;
     
     if (tagExists) {
-        ProcessCustomTagsForNode(node.shadowRoot);
+        processChildNodes(node.shadowRoot);
         return;
     }
 
     customElements.whenDefined(tagName).then(_ => {
-        ProcessCustomTagsForNode(node.shadowRoot);
+        processChildNodes(node.shadowRoot);
     });
 
-    const componentName = tagName.substring(2);
+    await loadWebComponent(tagName);
+}
+
+async function loadWebComponent(tagName) {
+    let componentName = tagName.substring(2);
+
+    if (componentName.startsWith('vue-')) {
+        componentName = `vue-components/dist/${componentName}.mjs`;
+    } else {
+        componentName += '.js';
+    }
+
     await import(`./components/${componentName}`);
 }
+
