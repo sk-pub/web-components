@@ -1,4 +1,4 @@
-class Header extends HTMLElement {
+class Text extends HTMLElement {
     _shadowRoot;
   
     constructor() {
@@ -10,7 +10,7 @@ class Header extends HTMLElement {
     render() {
         const template = document.createElement('template');
         template.innerHTML = `
-<x-section title="Section in header"></x-section>
+<span>Text</span>
         `;
         this._shadowRoot.appendChild(template.content.cloneNode(true));
     }
@@ -20,4 +20,5 @@ class Header extends HTMLElement {
     }
 }
   
-  globalThis.customElements.define('x-header', Header);
+  globalThis.customElements.define('x-text', Text);
+  

@@ -5,12 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Web Components playground</title>
   </head>
   <body>
-    <x-section title="Document-level section"></x-section>
     <x-header></x-header>
-    <x-content></x-content>
+    <section id="content">
+    </section>
+    <button onclick="document.getElementById('content').appendChild(document.createElement('x-content'))">Add Content</button>
+    <button onclick="document.getElementById('content').querySelector('x-content:last-child').remove()">Delete Content</button>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

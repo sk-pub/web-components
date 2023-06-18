@@ -1,4 +1,4 @@
-class Content extends HTMLElement {
+class SubSection extends HTMLElement {
     _shadowRoot;
   
     constructor() {
@@ -10,16 +10,23 @@ class Content extends HTMLElement {
     render() {
         const template = document.createElement('template');
         template.innerHTML = `
-<x-section title="Section in content"></x-section>
-<x-sub-section />
+<x-section title="Sub-section"></x-section>
+<button>Add Text</button>
         `;
         this._shadowRoot.appendChild(template.content.cloneNode(true));
+
+        this._shadowRoot.querySelector('button').addEventListener('click', this.addText.bind(this));
     }
   
     connectedCallback() {
         this.render();
     }
+
+    addText() {
+        const text = document.createElement('x-text');
+        this._shadowRoot.appendChild(text);
+    }
 }
   
-  globalThis.customElements.define('x-content', Content);
+  globalThis.customElements.define('x-sub-section', SubSection);
   

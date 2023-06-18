@@ -8,7 +8,7 @@ class Section extends HTMLElement {
     constructor() {
         super();
   
-        this._shadowRoot = this.attachShadow({mode: "closed"});
+        this._shadowRoot = this.attachShadow({mode: 'open'});
     }
   
     render() {
